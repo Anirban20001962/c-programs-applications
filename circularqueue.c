@@ -15,7 +15,8 @@ void insert(QUEUE* s,int data) {
        return;
    }
    no_of_el++;
-   s->arr[++s->rear%capacity] = data;
+   s->rear =(s->rear+1)%capacity;
+   s->arr[s->rear] = data;
 }
 
 int delete(QUEUE* s) {
@@ -24,7 +25,8 @@ int delete(QUEUE* s) {
         return -1;
     }
     no_of_el--;
-    return s->arr[++s->front%capacity];
+    s->front = (s->front + 1)%capacity;
+    return s->arr[s->front];
 }
 
 void display(QUEUE* s) {
@@ -65,6 +67,7 @@ int main() {
     printf("Press 1 to insert ,press2 to delete , press 3 to display and any no. to exit\n");
     while (1)
     {
+        fflush(stdin);
         printf("Enter your choice\n");
         scanf("%d",&ch);
         switch (ch)
